@@ -14,7 +14,7 @@ function NoteCard({id, title, description}) {
         res_description = description
     }
 
-    return <Link to={`/note/${id}`}><div className="card bg-neutral-400">
+    return <Link to={`/online-notes/note/${id}`}><div className="card bg-neutral-400">
         <h1 className="card_title">{res_title}</h1>
         <p className="card_description">{res_description}</p>
     </div></Link>
