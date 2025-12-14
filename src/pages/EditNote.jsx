@@ -1,13 +1,14 @@
-import { useParams } from "react-router-dom";
-import Header from "../components/Header";
-import NoteService from "../services/NoteService";
+import { Header } from "../components/Header";
+import { EditNoteForm } from "../components/EditNoteForm";
+import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { Context } from "../main";
 import { observer } from "mobx-react-lite";
-import { useNavigate } from "react-router-dom";
+import NoteService from "../services/NoteService";
 
-export function NoteDetails() {
+export function EditNote() {
   const { id } = useParams();
+  const [isUpdated, setIsUpdated] = useState(false);
   const [notes, setNotes] = useState([]);
   const { store } = useContext(Context);
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ export function NoteDetails() {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       store.checkAuth();
-    } 
+    }
     if (!store.isAuth && !store.isLoading) {
       navigate("/online-notes/login", { replace: true });
     } else {
@@ -36,20 +37,28 @@ export function NoteDetails() {
     return notes.find((note) => note.id === parseInt(id, 10));
   }, [notes]);
 
+  useEffect(() => {
+    if (isUpdated) {
+      setIsUpdated(false);
+      navigate("/online-notes", { replace: true });
+    }
+  }, [isUpdated]);
+
   return (
-    <>
+    <div className="card_details">
       <Header isSearchHidden={true} />
-      {note ? (
-        <main className="w-4xl">
-          <h1 className="mb-5">{note.title}</h1>
-          <h3 className="mb-5">{note.date}</h3>
-          <p>{note.description}</p>
-        </main>
-      ) : (
-        <></>
-      )}
-    </>
+      {
+        (note) ? (
+          <EditNoteForm
+          id={note.id}
+          title={note.title}
+          description={note.description}
+          setIsUpdated={setIsUpdated}
+        />
+        ) : (<></>)
+      }
+    </div>
   );
 }
 
-export default observer(NoteDetails);
+export default observer(EditNote);

@@ -1,5 +1,5 @@
 {
-  "homepage": "https://nothishit.github.io/online-notes/",
+  "homepage": "https://nothishit.github.io/online-notes",
   "name": "online-notes",
   "private": true,
   "version": "0.0.0",
@@ -10,10 +10,15 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist" 
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@ant-design/icons": "^6.1.0",
     "@tailwindcss/vite": "^4.1.17",
+    "antd": "^6.1.0",
+    "axios": "^1.13.2",
+    "mobx": "^6.15.0",
+    "mobx-react-lite": "^4.1.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.9.6",
