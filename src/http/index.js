@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const API_URL = 'https://quickly-benevolent-moose.cloudpub.ru:443'
+// export const API_URL = 'http://localhost:8000'
 
 const $api = axios.create({
     withCredentials: true,

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Form, Input } from "antd";
+import { Form, Input } from "antd";
 import { Context } from "../main";
 import { observer } from "mobx-react-lite";
 import { Link, useNavigate } from "react-router-dom";
@@ -22,9 +22,9 @@ const LoginForm = () => {
   return (
     <Form
       name="login"
-      labelCol={{ span: 8 }}
+      labelCol={{ span: 4 }}
       wrapperCol={{ span: 16 }}
-      style={{ maxWidth: 600 }}
+      style={{ maxWidth: 600, margin: "auto" }}
       initialValues={{ remember: true }}
       autoComplete="off"
     >
@@ -58,6 +58,7 @@ const LoginForm = () => {
       </Form.Item>
 
       <Form.Item
+        labelCol={{ span: 4 }}
         label={<label style={{ color: "white" }}>Нет аккаунта?: </label>}
       >
         <Link to="/online-notes/registration">Регистрация</Link>
